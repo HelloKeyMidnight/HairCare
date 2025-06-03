@@ -6,6 +6,10 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    <div class="corner-logo">
+  <img src="Logo.png" alt="Corner Logo" />
+</div>
+
 }
 
 /* Header */
@@ -60,7 +64,7 @@ header {
 .corner-logo {
     position: fixed;
     top: 20px;
-    right: 20px;
+  /*  right: 20px; */
     left: 20px; /* Change to right: 20px; for top-right */
     z-index: 9999;
     width: 60px;
