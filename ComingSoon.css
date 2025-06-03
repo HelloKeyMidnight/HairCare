@@ -1,0 +1,77 @@
+/* Cute Coming Soon Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ffe0f0, #fff0e6);
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden; /* Ensures no scrolling */
+  }
+  
+  .ComingSoon-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Add slight hover effect to the container */
+  .ComingSoon-container:hover {
+    transform: scale(1.05);
+  }
+  
+  .ComingSoon-container h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+  
+  .ComingSoon-container p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  /* Return Home Button */
+  .return-home-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #ff69b4;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+  }
+  
+  /* Hover effect for the button */
+  .return-home-btn:hover {
+    background-color: #ff85c1;
+    transform: translateY(-3px); /* Lift effect */
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .ComingSoon-container {
+      padding: 25px;
+      width: 90%;
+    }
+  
+    .ComingSoon-container h1 {
+      font-size: 22px;
+    }
+  
+    .ComingSoon-container p {
+      font-size: 14px;
+    }
+  }
+  

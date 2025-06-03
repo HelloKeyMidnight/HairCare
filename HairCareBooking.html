@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hair Care Booking</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    let currentStep = 1;
+    let selectedCategory = '';
+
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(s => s.classList.add('hidden'));
+      document.getElementById(`step-${step}`).classList.remove('hidden');
+      currentStep = step;
+    }
+
+    function handleCategorySelect(category) {
+      selectedCategory = category;
+      document.querySelectorAll('.service-category').forEach(cat => cat.classList.add('hidden'));
+      document.getElementById(`services-${category}`).classList.remove('hidden');
+      showStep(2);
+    }
+
+    function goToAddOns(serviceName, calendlyLink, price) {
+  document.getElementById('selected-service-name').textContent = serviceName;
+  document.getElementById('selected-service-price').textContent = price;
+  document.getElementById('calendly-link').value = calendlyLink;
+
+  // Skip step 3 for natural, wig, or weave categories
+  if (selectedCategory === 'extensions' || selectedCategory === 'locs') {
+    showStep(3); // show add-ons
+  } else {
+    goToSummary(); // skip directly to summary
+  }
+}
+
+    function goToSummary() {
+      const serviceName = document.getElementById('selected-service-name').textContent;
+      const basePrice = parseFloat(document.getElementById('selected-service-price').textContent.replace('$',''));
+      const length = document.querySelector('input[name="length"]:checked');
+      const lengthPrice = length ? parseFloat(length.value) : 0;
+      const total = basePrice + lengthPrice;
+
+      document.getElementById('summary-service').textContent = serviceName;
+      document.getElementById('summary-base-price').textContent = `$${basePrice}`;
+      document.getElementById('summary-length-price').textContent = `$${lengthPrice}`;
+      document.getElementById('summary-total').textContent = `$${total}`;
+
+      showStep(4);
+    }
+
+    function goToCalendly() {
+      const calendly = document.getElementById('calendly-link').value;
+      window.open(calendly, '_blank');
+    }
+
+    function goBack() {
+      if (currentStep === 2) {
+        showStep(1);
+      } else if (currentStep === 3) {
+        showStep(2);
+      } else if (currentStep === 4) {
+        showStep(3);
+      }
+    }
+
+    function goToCalendly() {
+  const calendly = document.getElementById('calendly-link').value;
+  const redirectUrl = encodeURIComponent(window.location.href + '?status=pending');
+  const fullUrl = calendly + '?redirect_uri=' + redirectUrl;
+  window.location.href = fullUrl;
+}
+
+window.onload = function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('status') === 'pending') {
+    document.getElementById('pending-message').classList.remove('hidden');
+  }
+};
+
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold text-center text-white bg-black py-4 mb-6">Crowned By Key Hair Care Booking</h1>
+
+    <!-- Step 1: Select a Hair Service Category -->
+    <div id="step-1" class="step">
+      <h2 class="text-xl font-semibold mb-4">Step 1: Select a Hair Service Category</h2>
+      <select onchange="handleCategorySelect(this.value)" class="w-full p-3 border rounded">
+        <option disabled selected>-- Select a Service Category --</option>
+        <option value="natural">Natural Styles (No Extensions)</option>
+        <option value="extensions">Styles with Extensions</option>
+        <option value="wig">Wig & Weave Services</option>
+        <option value="locs">Loc Services</option>
+      </select>
+    </div>
+
+    <!-- Step 2: Choose a Service -->
+    <div id="step-2" class="step hidden">
+      <h2 class="text-xl font-semibold mb-4">Step 2: Choose a Service</h2>
+      <div id="services-natural" class="service-category hidden">
+        <h3 class="font-bold mb-2">Natural Styles</h3>
+        <button onclick="goToAddOns('Two Straight Back Braids', 'https://calendly.com/crownedbykey-com/protective-styles', '$50')" class="block w-full text-left p-2 border mb-1">Two Straight Back Braids - $50</button>
+        <button onclick="goToAddOns('Cornrows – Large', 'https://calendly.com/crownedbykey-com/protective-styles', '$50')" class="block w-full text-left p-2 border mb-1">Cornrows – large - $50</button>
+        <button onclick="goToAddOns('Silk Press', 'https://calendly.com/crownedbykey-com/hair-straightening', '$60')" class="block w-full text-left p-2 border mb-1">Silk Press - $60</button>
+        <button onclick="goToAddOns('Cornrows – Medium', 'https://calendly.com/crownedbykey-com/protective-styles', '$70')" class="block w-full text-left p-2 border mb-1">Cornrows – Medium - $70</button>
+        <button onclick="goToAddOns('Cornrows – Small', 'https://calendly.com/crownedbykey-com/protective-styles', '$80')" class="block w-full text-left p-2 border mb-1">Cornrows – Small - $90</button>
+        <button onclick="goToAddOns('Pop Smoke Braids', 'https://calendly.com/crownedbykey-com/protective-styles', '$70')" class="block w-full text-left p-2 border mb-1">Pop Smoke Braids - $70</button>
+        <button onclick="goToAddOns('Plaits (No Extensions)', 'https://calendly.com/crownedbykey-com/protective-styles', '$60')" class="block w-full text-left p-2 border mb-1">Plaits (No Extensions) - $60</button>
+        <button onclick="goToAddOns('Flat Twists', 'https://calendly.com/crownedbykey-com/protective-styles', '$50')" class="block w-full text-left p-2 border mb-1">Flat Twists - $50</button>
+        <button onclick="goToAddOns('Bantu Knots', 'https://calendly.com/crownedbykey-com/protective-styles', '$50')" class="block w-full text-left p-2 border mb-1">Bantu Knots - $50</button>
+        <button onclick="goToAddOns('Half-Up Half-Down', 'https://calendly.com/crownedbykey-com/protective-styles', '$60')" class="block w-full text-left p-2 border mb-1">Half-Up Half-Down - $60</button>
+        <button onclick="goToAddOns('Space Buns', 'https://calendly.com/crownedbykey-com/protective-styles', '$45')" class="block w-full text-left p-2 border mb-1">Space Buns - $45</button>
+        <!-- Other natural style services here -->
+      </div>
+      <div id="services-extensions" class="service-category hidden">
+        <h3 class="font-bold mb-2">Styles with Extensions</h3>
+        <button onclick="goToAddOns('Large Knotless', 'https://calendly.com/crownedbykey-com/large-knotless', '$100')" class="block w-full text-left p-2 border mb-1">Large Knotless - $90</button>
+        <button onclick="goToAddOns('Medium Knotless', 'https://calendly.com/crownedbykey-com/medium-knotless', '$120')" class="block w-full text-left p-2 border mb-1">Medium Knotless - $120</button>
+        <button onclick="goToAddOns('Small Knotless', 'https://calendly.com/crownedbykey-com/small-knotless', '$140')" class="block w-full text-left p-2 border mb-1">Small Knotless - $150</button>
+        <button onclick="goToAddOns('Protective Styles', 'https://calendly.com/crownedbykey-com/protective-styles', '$90')" class="block w-full text-left p-2 border mb-1">Protective Styles - $90</button>
+        <button onclick="goToAddOns('Two Straight Back Braids With Extensions', 'https://calendly.com/crownedbykey-com/protective-styles', '$65')" class="block w-full text-left p-2 border mb-1">Cornrows – $65</button>
+        <button onclick="goToAddOns('Cornrows – Large With Extensions', 'https://calendly.com/crownedbykey-com/protective-styles', '$70')" class="block w-full text-left p-2 border mb-1">Cornrows – large - $70</button>
+        <button onclick="goToAddOns('Cornrows – Medium With Extensions', 'https://calendly.com/crownedbykey-com/protective-styles', '$80')" class="block w-full text-left p-2 border mb-1">Cornrows – Medium - $80</button>
+        <button onclick="goToAddOns('Cornrows – Small With Extensions', 'https://calendly.com/crownedbykey-com/protective-styles', '$100')" class="block w-full text-left p-2 border mb-1">Cornrows – Small - $100</button>
+        <!-- Other extension style services here -->
+      </div>
+      <div id="services-wig" class="service-category hidden">
+        <h3 class="font-bold mb-2">Wig & Weave Services</h3>
+        <button onclick="goToAddOns('Wig Install', 'https://calendly.com/crownedbykey-com/wig-install', '$110')" class="block w-full text-left p-2 border mb-1">Wig Install - $110</button>
+        <button onclick="goToAddOns('Leave Out Weave', 'https://calendly.com/crownedbykey-com/leave-out-weave', '$100')" class="block w-full text-left p-2 border mb-1">Leave Out Weave - $100</button>
+        <button onclick="goToAddOns('Wedding Hair Styles', 'https://calendly.com/crownedbykey-com/wedding-hair-styles', '$150')" class="block w-full text-left p-2 border mb-1">Wedding Hair Styles - $150</button>
+        <!-- Other wig & weave services here -->
+      </div>
+      <div id="services-locs" class="service-category hidden">
+        <h3 class="font-bold mb-2">Loc Services</h3>
+        <button onclick="goToAddOns('Loc Retwist', 'https://calendly.com/crownedbykey-com/lock-retwist', '$80')" class="block w-full text-left p-2 border mb-1">Loc Retwist - $80</button>
+        <!-- Add other loc services here -->
+      </div>
+      <button onclick="goBack()" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600">Back</button>
+    </div>
+
+    <!-- Step 3: Add Service Details -->
+    <div id="step-3" class="step hidden">
+      <h2 class="text-xl font-semibold mb-4">Step 3: Add Service Details</h2>
+      <p class="mb-2">Selected Service: <strong id="selected-service-name"></strong> - <span id="selected-service-price"></span></p>
+      <p class="mb-2">Select Hair Length:</p>
+      <label><input type="radio" name="length" value="0" /> Mid-Back/ Natural hair length (no extra charge)</label><br>
+      <label><input type="radio" name="length" value="10" /> Waist Length (+$10)</label><br>
+      <label><input type="radio" name="length" value="20" /> Ankle Length (+$20)</label>
+      <br><br>
+      <label class="block mt-2">Upload Reference Photo (optional):</label>
+      <input type="file" class="mb-4">
+      <button onclick="goToSummary()" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Continue</button>
+      <input type="hidden" id="calendly-link">
+      <button onclick="goBack()" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600">Back</button>
+    </div>
+
+    <!-- Step 4: Summary -->
+    <div id="step-4" class="step hidden">
+      <h2 class="text-xl font-semibold mb-4">Step 4: Summary</h2>
+      <p>Service: <strong id="summary-service"></strong></p>
+      <p>Base Price: <span id="summary-base-price"></span></p>
+      <p>Length Add-on: <span id="summary-length-price"></span></p>
+      <p class="font-bold">Total: <span id="summary-total"></span></p>
+
+      <input type="hidden" id="calendly-link" />
+
+      <button onclick="goToCalendly()" class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+    </div>
+    
+    <div id="pending-message" class="hidden bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-4">
+        <p><strong>Appointment is pending:</strong> Please send your deposit to <strong>$Keyanifb</strong>. Then confirmation will be sent. Thank you for booking with Key!</p>
+      </div>
+      
+      
+  </div>
+</body>
+</html>
