@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cute Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    /* General Page Enhancements */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f1f8;
+      color; #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    /* Fixed Logo */
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      width: 100px;
+    }
+
+    .logo a {
+      display: inline-block;
+    }
+
+    .logo img {
+      width: 100%;
+      height: auto;
+      max-width: 100px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+      transition: transform 0.3s ease;
+    }
+
+    .logo img:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 20px;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      color: #333;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+
+    .hero .cta-button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.3s ease-in-out;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #ff85c1;
+      transform: scale(1.1);
+    }
+
+    /* Navigation */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-size: 1.2em;
+      color: #444;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ff69b4;
+    }
+
+    /* Service Page */
+    .service-options {
+      background-color: #fff;
+      padding: 40px 20px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-options h2 {
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .service-options select,
+    .service-options label {
+      width: 100%;
+      font-size: 1.1em;
+    }
+
+    .service-options select {
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    .service-options label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .service-options .btn {
+      background-color: #ff69b4;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      transition: background-color 0.3s, transform 0.3s ease-in-out;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .service-options .btn:hover {
+      background-color: #ff85c1;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+
+    .socials a {
+      color: #ff69b4;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
+      color: #ff85c1;
+    }
+
+    /* Float Animation */
+    @keyframes floaty {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .logo {
+        width: 80px;
+        top: 15px;
+        left: 15px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+        margin-top: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .service-options h2 {
+        font-size: 2em;
+      }
+
+      .service-options .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="/surprise">
+        <img src="logo.png" alt="Logo">
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to My Cute Website</h1>
+    <a class="cta-button" href="#services">Explore Services</a>
+  </section>
+
+  <section class="service-options" id="services">
+    <h2>Choose a Service</h2>
+    <label for="service">Select one:</label>
+    <select id="service" name="service">
+      <option value="design">Design</option>
+      <option value="consulting">Consulting</option>
+      <option value="coaching">Coaching</option>
+    </select>
+    <button class="btn">Book Now</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Your Cute Brand. All rights reserved.</p>
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">YouTube</a>
+    </div>
+  </footer>
+
+</body>
+</html>
